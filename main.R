@@ -86,15 +86,14 @@ main <- function() {
     clean_chocolate_data()
 
   # Explore which variables may matter
-  # feature_importance(choc_df)
+  feature_importance(choc_df)
 
   # Put together some plots
   plot_rating_by_cocoa_perc(choc_df)
-  stop("Stopping for now")
   plot_rating_dist(choc_df)
   plot_rating_dist_company(choc_df)
 
-  # Show the top 10 best rated chocolates (more recent years perfered)
+  # Show the top 10 best rated chocolates (more recent years preferred)
   top_chocolates(choc_df, 10) %>%
     print()
 }
