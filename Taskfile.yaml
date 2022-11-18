@@ -1,0 +1,30 @@
+# https://taskfile.dev
+
+version: '3'
+
+env:
+  TAG: "johngeer/chocolate_exploration:0.2"
+
+tasks:
+  default:
+    cmds:
+      - task: run_i
+      - task: cleanup # run after the run_i is complete
+
+  run_i:
+    deps: [build]
+    vars:
+      PWD:
+        sh: pwd
+    cmds:
+      - "docker run
+        --volume {{.PWD}}:/home/rstudio/
+        -it $TAG"
+
+  build:
+    cmds:
+      - docker build -t {{.TAG}} .
+
+  cleanup: # clean up the dangling containers
+    cmds:
+      - docker system prune -f
