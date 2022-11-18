@@ -50,6 +50,18 @@ plot_rating_dist_company = function(choc_df) {
   ggsave("images/rating_dist_by_company.png", p, width=600, height=600, unit="px", dpi=100)
 }
 
+plot_rating_by_cocoa_perc = function(choc_df) {
+  plot_df = choc_df 
+
+  p = ggplot(data = plot_df, aes(x = cocoa_percent, y = rating)) +
+    geom_hex(bins=10) +
+    scale_fill_continuous(type = "viridis") +
+    labs(title = "Chocolate Ratings by Cocoa Percentage") +
+    theme_bw()
+
+  ggsave("images/rating_by_cocoa_percent.png", p, width=600, height=600, unit="px", dpi=100)
+}
+
 top_chocolates = function(choc_df, n) {
   # Get the most recent, highest rated ones
   choc_df %>%
@@ -71,17 +83,19 @@ main = function() {
   choc_df = read_csv('data/flavors_of_cacao.csv') %>%
     clean_chocolate_data()
 
-  plot_rating_dist_company(choc_df)
-  stop("Stopping for now")
+  # Explore which variables may matter
+  # feature_importance(choc_df)
 
-  feature_importance(choc_df)
+  # Put together some plots
+  plot_rating_by_cocoa_perc(choc_df)
+  stop("Stopping for now")
+  plot_rating_dist(choc_df)
+  plot_rating_dist_company(choc_df)
 
   # Show the top 10 best rated chocolates (more recent years perfered)
   top_chocolates(choc_df, 10) %>%
     print()
 
-  # Plot the chocolate rating by years
-  plot_rating_dist(choc_df)
 
 }
 

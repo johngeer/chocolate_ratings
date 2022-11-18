@@ -1,8 +1,16 @@
-This is a look at what chocolate is rated the highest. 
+This is a look at what chocolate is rated the highest.
 
-Example of it by year:
+There are a few company's with a good records:
+
+![chocolate rating by year](images/rating_dist_by_company.png)
+
+The year doesn't seem to be particularly predictive?
 
 ![chocolate rating by year](images/rating_dist_by_year.png)
+
+Chocolatiers seem to aim for about 70% Cacoa:
+
+![Rating by Coca Percentage](images/rating_by_cocoa_percent.png)
 
 ## Data
 
